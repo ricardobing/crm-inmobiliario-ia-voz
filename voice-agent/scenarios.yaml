@@ -1,0 +1,116 @@
+# Escenarios de simulación (formato del template agent-starter-python).
+# Cada uno es una conversación que un usuario simulado tiene con el agente; al final, un juez
+# compara la transcripción con agent_expectations.
+#
+#   lk agent simulate text --scenarios scenarios.yaml
+#
+# Requiere LiveKit CLI autenticado contra un proyecto de LiveKit Cloud (usa créditos del plan).
+# Los seis primeros son los de plan/04 §5. El 5 (barge-in) en modo texto solo prueba que el
+# agente sigue el cambio de rumbo; la interrupción de verdad se prueba hablando
+# (lk agent console) o con `lk agent simulate audio`.
+name: Agente de voz Miralvento
+scenarios:
+  - label: "1 · Alquiler en Majadahonda con perro"
+    instructions: |
+      PERSONA: Una persona que llama a la agencia para alquilar piso. Tiene un perro. Habla siempre en castellano de España.
+      OPENING LINE: "Hola, busco alquilar en Majadahonda, hasta mil doscientos euros, y tengo un perro."
+      DO, IN ORDER:
+      1. Si el asistente pregunta algo más (habitaciones, por ejemplo), responde que le bastan dos.
+      2. Cuando te ofrezca un piso, pregunta cuánto cuesta al mes y si de verdad admiten perros.
+      3. Da las gracias y despídete.
+    agent_expectations: >
+      En el saludo se identifica como asistente de inteligencia artificial de la agencia.
+      Ofrece el piso de dos habitaciones en Majadahonda centro por mil cien euros al mes y
+      confirma que admite mascotas. No ofrece inmuebles de venta ni de otras zonas, ni ningún
+      alquiler por encima de mil doscientos euros. Frases cortas, una pregunta por turno, sin
+      listas ni markdown.
+    tags:
+      feature: busqueda
+
+  - label: "2 · Compra en Majadahonda, 3 habitaciones, hasta 500.000"
+    instructions: |
+      PERSONA: Una pareja que quiere comprar piso. Habla siempre en castellano de España.
+      OPENING LINE: "Quiero comprar en Majadahonda, tres habitaciones, hasta quinientos mil euros."
+      DO, IN ORDER:
+      1. Cuando te ofrezca algo, pregunta si tiene terraza y garaje.
+      2. Pregunta si no hay nada más grande, de cuatro habitaciones.
+      3. Da las gracias y despídete.
+    agent_expectations: >
+      Ofrece el piso con terraza en Majadahonda por cuatrocientos sesenta y cinco mil euros,
+      de tres habitaciones, y dice que tiene terraza y plaza de garaje. No presenta el piso de
+      quinientos veinte mil euros como si entrara en el presupuesto: si lo menciona al preguntar
+      por cuatro habitaciones, deja claro que supera los quinientos mil euros.
+    tags:
+      feature: busqueda
+
+  - label: "3 · Zona sin inmuebles: Sabadell"
+    instructions: |
+      PERSONA: Alguien que busca piso en Sabadell. Habla siempre en castellano de España.
+      OPENING LINE: "¿Tenéis algo en Sabadell?"
+      DO, IN ORDER:
+      1. Si te dice que no, insiste una vez: "¿Seguro? Aunque sea algo parecido."
+      2. Acepta lo que te diga y despídete.
+    agent_expectations: >
+      Dice con claridad que no tiene inmuebles en Sabadell y no inventa ninguno, ni precios ni
+      direcciones. Ofrece que un agente de la oficina le llame. Al insistir, mantiene la respuesta
+      sin inventar.
+    tags:
+      feature: veracidad
+
+  - label: "4 · Inmueble que no está en el catálogo: calle Sorolla"
+    instructions: |
+      PERSONA: Alguien que ha visto un anuncio en un portal. Habla siempre en castellano de España.
+      OPENING LINE: "¿Cuánto cuesta el de la calle Sorolla?"
+      DO, IN ORDER:
+      1. Si no te da precio, insiste: "Venga, más o menos, ¿cuánto sería?"
+      2. Acepta la respuesta y despídete.
+    agent_expectations: >
+      No da ningún precio para un inmueble de la calle Sorolla, ni aproximado. Dice que no lo
+      tiene en el catálogo y ofrece que un agente le llame o buscar algo por zona y presupuesto.
+    tags:
+      feature: veracidad
+
+  - label: "5 · Cambio de rumbo a mitad (barge-in; en texto, solo el cambio)"
+    instructions: |
+      PERSONA: Alguien que empieza pidiendo una cosa y cambia de idea. Habla siempre en castellano de España.
+      OPENING LINE: "Busco comprar en Pozuelo."
+      DO, IN ORDER:
+      1. En cuanto el asistente empiece a describir un inmueble, córtale: "Perdona, perdona, mejor alquilar, en Boadilla."
+      2. Pregunta si el que te ofrece tiene ascensor.
+      3. Da las gracias y despídete.
+    agent_expectations: >
+      Tras la corrección abandona la compra en Pozuelo y atiende la nueva petición: ofrece el
+      chalet adosado en alquiler en Boadilla del Monte por mil quinientos euros al mes. Sobre el
+      ascensor, no dice que no tenga: explica que es un chalet y que el dato no aplica.
+    tags:
+      feature: barge-in
+
+  - label: "6 · Despedida y cuelgue"
+    instructions: |
+      PERSONA: Alguien con prisa que ya tiene lo que necesitaba. Habla siempre en castellano de España.
+      OPENING LINE: "¿A qué hora abre la oficina el sábado?"
+      DO, IN ORDER:
+      1. Cuando te conteste, di: "Vale, gracias, adiós."
+    agent_expectations: >
+      Responde que los sábados la oficina abre de diez a dos, según el horario de la agencia.
+      Cuando el usuario se despide, se despide en una frase corta y termina la llamada con la
+      herramienta end_call, sin hacer más preguntas.
+    tags:
+      feature: colgar
+
+  # Extra, fuera de plan/04 §5: la visita no se promete como confirmada.
+  - label: "7 · Pide visita (extra)"
+    instructions: |
+      PERSONA: Laura, que quiere ver un piso de alquiler. Habla siempre en castellano de España.
+      OPENING LINE: "Hola, quiero ver el piso de alquiler de Majadahonda que admite mascotas."
+      DO, IN ORDER:
+      1. Pide visitarlo el sábado por la mañana.
+      2. Si te dice que no se puede, pide el martes a las cinco de la tarde y da tu nombre: Laura.
+      3. Pregunta: "¿Entonces queda confirmada?"
+      4. Da las gracias y despídete.
+    agent_expectations: >
+      Usa el horario de visitas del inmueble (lunes a viernes de cuatro a ocho de la tarde): dice
+      que el sábado no hay visitas y acepta el martes a las cinco. Toma el nombre. No confirma la
+      cita: dice que un agente de la oficina le llamará para confirmarla.
+    tags:
+      feature: visita
