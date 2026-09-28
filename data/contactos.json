@@ -1,0 +1,580 @@
+{
+  "organization": {
+    "id": "ORG-0031",
+    "name": "Miralvento Gestión Inmobiliaria"
+  },
+  "exported_at": "2026-07-14T08:00:00Z",
+  "source_note": "Export combinado: CRM + canal de voz IA + WhatsApp + formularios web + campañas Meta + importación del CRM anterior. Las interacciones van embebidas en cada contacto.",
+  "contacts": [
+    {
+      "id": "c-001",
+      "organization_id": "ORG-0031",
+      "full_name": "Carmen Ruiz Delgado",
+      "phone": "+34 655 12 34 56",
+      "email": null,
+      "lead_source": "VOICE_CALL",
+      "contact_type": "INTERESTED",
+      "created_at": "2026-07-08T10:28:00Z",
+      "ai_handoff": false,
+      "is_test": false,
+      "assigned_agent_id": null,
+      "matching_enabled": true,
+      "tags": null,
+      "notes": null,
+      "qualification_data": {
+        "qualification": {
+          "sale": {
+            "zones": { "value": ["Majadahonda"], "source": "explicit", "confidence": "high", "updatedAt": "2026-07-08T10:32:00Z", "sourceRef": "conv-8812" },
+            "budget": { "value": { "max": 480000 }, "source": "explicit", "confidence": "high", "updatedAt": "2026-07-08T10:33:10Z", "sourceRef": "conv-8812" },
+            "bedrooms": { "value": 3, "source": "explicit", "confidence": "high", "updatedAt": "2026-07-08T10:33:40Z", "sourceRef": "conv-8812" },
+            "financing": { "value": "hipoteca pendiente de aprobar", "source": "explicit", "confidence": "medium", "updatedAt": "2026-07-08T10:34:05Z", "sourceRef": "conv-8812" },
+            "terrace": { "value": true, "source": "explicit", "confidence": "medium", "updatedAt": "2026-07-08T10:35:20Z", "sourceRef": "conv-8812" }
+          },
+          "shared": {
+            "has_pets": { "value": true, "source": "explicit", "confidence": "high", "updatedAt": "2026-07-08T10:34:30Z", "sourceRef": "conv-8812" },
+            "urgency": { "value": "alta — vende su piso actual y quiere mudarse antes de fin de año", "source": "explicit", "confidence": "medium", "updatedAt": "2026-07-08T10:35:00Z", "sourceRef": "conv-8812" }
+          },
+          "_meta": {
+            "lastSyncedAt": "2026-07-08T10:36:00Z",
+            "lastSource": "voice"
+          }
+        }
+      },
+      "interest_preferences": {
+        "operation": "SALE",
+        "zones": ["Majadahonda"],
+        "budget_max": 480000,
+        "bedrooms_min": 3
+      },
+      "interactions": [
+        {
+          "id": "i-1001",
+          "channel": "VOICE",
+          "direction": "inbound",
+          "created_at": "2026-07-08T10:28:00Z",
+          "content": "Carmen llamó interesada en comprar un piso de al menos 3 habitaciones en Majadahonda, presupuesto hasta 480.000 €. Está vendiendo su piso actual en Alcorcón y tiene la hipoteca pendiente de aprobación con su banco. Tiene un perro. Pidió que le avisáramos si entra algo con terraza.",
+          "metadata": {
+            "duration_sec": 412,
+            "audio_url": null,
+            "transcript_excerpt": "AGENTE: ¿Y en qué zona le gustaría buscar?\nCARMEN: Pues mire, en Majadahonda, porque mi hija vive allí y queremos estar cerca. Ahora estamos en Alcorcón pero ya hemos puesto el piso a la venta.\nAGENTE: Entiendo. ¿Y qué presupuesto tiene pensado para la compra?\nCARMEN: Hasta cuatrocientos ochenta mil, aunque dependemos un poco de la hipoteca, que la tenemos pendiente de que nos la aprueben.\nAGENTE: ¿Cuántas habitaciones necesitaría como mínimo?\nCARMEN: Tres, porque viene mi madre a vivir con nosotros. Ah, y tenemos un perro, no sé si eso importa para algo.\nAGENTE: Lo apunto. ¿Alguna preferencia más?\nCARMEN: Si tiene terraza, mejor. Y no me importaría que me avisaran si entra algo así."
+          }
+        },
+        {
+          "id": "i-1002",
+          "channel": "WHATSAPP",
+          "direction": "outbound",
+          "created_at": "2026-07-08T11:05:00Z",
+          "content": "Hola Carmen, soy el asistente de Miralvento. Como me pediste, te aviso: tenemos un piso de 3 habitaciones con terraza en Majadahonda que encaja con lo que buscas. ¿Quieres que te pase la ficha?",
+          "metadata": null
+        }
+      ]
+    },
+    {
+      "id": "c-002",
+      "organization_id": "ORG-0031",
+      "full_name": "JOSÉ LUIS MARTÍN CABRERA",
+      "phone": "0034612889034",
+      "email": null,
+      "lead_source": "llamada",
+      "contact_type": "INTERESTED",
+      "created_at": "2026-07-09T17:12:00Z",
+      "ai_handoff": false,
+      "is_test": false,
+      "assigned_agent_id": null,
+      "matching_enabled": true,
+      "tags": null,
+      "notes": null,
+      "qualification_data": {
+        "qualification": {
+          "rental": {
+            "budget": { "value": "1.100 €", "source": "explicit", "updatedAt": "2026-07-09T17:15:00Z", "sourceRef": "conv-8845" },
+            "zones": { "value": "Las Rozas o Majadahonda", "source": "explicit", "updatedAt": "2026-07-09T17:14:30Z", "sourceRef": "conv-8845" }
+          },
+          "shared": {
+            "has_pets": { "value": "tiene un perro pequeño", "source": "explicit", "updatedAt": "2026-07-09T17:16:00Z", "sourceRef": "conv-8845" }
+          }
+        }
+      },
+      "interest_preferences": null,
+      "interactions": [
+        {
+          "id": "i-1010",
+          "channel": "VOICE",
+          "direction": "inbound",
+          "created_at": "2026-07-09T17:12:00Z",
+          "content": "José Luis busca alquiler de hasta 1.100 € en Las Rozas o Majadahonda. Tiene un perro pequeño. Se le informó de dos opciones disponibles y quedó en pensárselo.",
+          "metadata": { "duration_sec": 187, "audio_url": null }
+        }
+      ]
+    },
+    {
+      "id": "c-003",
+      "organization_id": "ORG-0031",
+      "full_name": "Antonio Vidal",
+      "phone": "699112233",
+      "email": null,
+      "lead_source": "VOZ",
+      "contact_type": "INTERESTED",
+      "created_at": "2026-07-10T09:40:00Z",
+      "ai_handoff": false,
+      "is_test": false,
+      "assigned_agent_id": null,
+      "matching_enabled": true,
+      "tags": null,
+      "notes": null,
+      "qualification_data": "{\"qualification\":{\"rental\":{\"zones\":{\"value\":[\"Las Rozas\"],\"source\":\"explicit\",\"confidence\":\"high\",\"updatedAt\":\"2026-07-10T09:44:00Z\",\"sourceRef\":\"conv-8861\"},\"budget\":{\"value\":1400,\"source\":\"explicit\",\"confidence\":\"high\",\"updatedAt\":\"2026-07-10T09:45:00Z\",\"sourceRef\":\"conv-8861\"},\"bedrooms\":{\"value\":2,\"source\":\"explicit\",\"confidence\":\"medium\",\"updatedAt\":\"2026-07-10T09:45:30Z\",\"sourceRef\":\"conv-8861\"}}}}",
+      "interest_preferences": null,
+      "interactions": [
+        {
+          "id": "i-1020",
+          "channel": "VOICE",
+          "direction": "inbound",
+          "created_at": "2026-07-10T09:40:00Z",
+          "content": "Antonio busca alquiler en Las Rozas, hasta 1.400 €, mínimo 2 habitaciones. Se muda por trabajo en septiembre.",
+          "metadata": { "duration_sec": 254, "audio_url": null }
+        }
+      ]
+    },
+    {
+      "id": "c-004",
+      "organization_id": "ORG-0031",
+      "full_name": null,
+      "phone": "+34688456789",
+      "email": null,
+      "lead_source": "WHATSAPP",
+      "contact_type": null,
+      "created_at": "2026-07-11T20:15:00Z",
+      "ai_handoff": false,
+      "is_test": false,
+      "assigned_agent_id": null,
+      "matching_enabled": true,
+      "tags": null,
+      "notes": null,
+      "qualification_data": null,
+      "interest_preferences": null,
+      "interactions": [
+        {
+          "id": "i-1030",
+          "channel": "WHATSAPP",
+          "direction": "inbound",
+          "created_at": "2026-07-11T20:15:00Z",
+          "content": "Hola, he visto el piso de la calle Sorolla en Idealista, ¿sigue disponible?",
+          "metadata": null
+        },
+        {
+          "id": "i-1031",
+          "channel": "WHATSAPP",
+          "direction": "outbound",
+          "created_at": "2026-07-11T20:15:40Z",
+          "content": "¡Hola! Sí, sigue disponible. Es un piso de 2 habitaciones en Majadahonda por 1.350 €/mes. ¿Te gustaría agendar una visita?",
+          "metadata": null
+        },
+        {
+          "id": "i-1032",
+          "channel": "WHATSAPP",
+          "direction": "inbound",
+          "created_at": "2026-07-11T20:22:00Z",
+          "content": "Puede ser, lo hablo con mi pareja y te digo",
+          "metadata": null
+        }
+      ]
+    },
+    {
+      "id": "c-005",
+      "organization_id": "ORG-0031",
+      "full_name": "Lucía Fernández",
+      "phone": null,
+      "email": "lucia.fdz@gmail.com",
+      "lead_source": "WEBSITE",
+      "contact_type": "INTERESTED",
+      "created_at": "11/07/2026",
+      "ai_handoff": false,
+      "is_test": false,
+      "assigned_agent_id": null,
+      "matching_enabled": true,
+      "tags": null,
+      "notes": "Prefiere contacto por email.",
+      "qualification_data": null,
+      "interest_preferences": null,
+      "interactions": [
+        {
+          "id": "i-1040",
+          "channel": "WEB_FORM",
+          "direction": "inbound",
+          "created_at": "11/07/2026 18:42",
+          "content": "Me interesa este piso, ¿podría recibir más información y fotos del baño? Preferiblemente contacto por email.",
+          "metadata": {
+            "form": "ficha-propiedad",
+            "property_ref": "MIR-2041"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c-006",
+      "organization_id": "ORG-0031",
+      "full_name": "David P.",
+      "phone": "+34677001122",
+      "email": "davidp1988@hotmail.com",
+      "lead_source": "META_LEAD_ADS",
+      "contact_type": "INTERESTED",
+      "created_at": "2026-07-12T13:05:00Z",
+      "ai_handoff": false,
+      "is_test": false,
+      "assigned_agent_id": null,
+      "matching_enabled": true,
+      "tags": ["meta-ads"],
+      "notes": "Meta Lead Ads — Campaña: Obra nueva Pozuelo — Julio 2026 · Respuestas del formulario: presupuesto: 300.000-400.000 · cuándo piensa comprar: 3-6 meses · vivienda actual: de alquiler",
+      "qualification_data": null,
+      "interest_preferences": null,
+      "interactions": [
+        {
+          "id": "i-1050",
+          "channel": "WHATSAPP",
+          "direction": "outbound",
+          "created_at": "2026-07-12T13:10:00Z",
+          "content": "Hola David, gracias por tu interés en la promoción de obra nueva de Pozuelo. ¿Te viene bien que te llamemos esta semana para contarte los detalles?",
+          "metadata": null
+        }
+      ]
+    },
+    {
+      "id": "c-007",
+      "organization_id": "ORG-0031",
+      "full_name": "Marta Iglesias Peña",
+      "phone": "+34 622 90 11 30",
+      "email": "marta.iglesias@outlook.es",
+      "lead_source": "VOICE_CALL",
+      "contact_type": "INTERESTED",
+      "created_at": "2026-07-12T16:30:00Z",
+      "ai_handoff": false,
+      "is_test": false,
+      "assigned_agent_id": null,
+      "matching_enabled": true,
+      "tags": null,
+      "notes": null,
+      "qualification_data": {
+        "qualification": {
+          "sale": {
+            "zones": { "value": ["Majadahonda"], "source": "explicit", "confidence": "high", "updatedAt": "2026-07-12T16:33:00Z", "sourceRef": "conv-8890" },
+            "budget": { "value": { "max": 550000 }, "source": "explicit", "confidence": "high", "updatedAt": "2026-07-12T16:34:00Z", "sourceRef": "conv-8890" },
+            "floor_pref": { "value": "a partir de una tercera planta", "source": "explicit", "confidence": "high", "updatedAt": "2026-07-12T16:35:00Z", "sourceRef": "conv-8890" },
+            "elevator": { "value": "imprescindible", "source": "explicit", "confidence": "high", "updatedAt": "2026-07-12T16:35:20Z", "sourceRef": "conv-8890" },
+            "orientation": { "value": "sur", "source": "explicit", "confidence": "medium", "updatedAt": "2026-07-12T16:35:50Z", "sourceRef": "conv-8890" },
+            "garage": { "value": true, "source": "explicit", "confidence": "high", "updatedAt": "2026-07-12T16:36:15Z", "sourceRef": "conv-8890" },
+            "accesibilidad_movilidad_reducida": { "value": true, "source": "explicit", "confidence": "medium", "updatedAt": "2026-07-12T16:36:40Z", "sourceRef": "conv-8890" }
+          }
+        }
+      },
+      "interest_preferences": null,
+      "interactions": [
+        {
+          "id": "i-1060",
+          "channel": "VOICE",
+          "direction": "inbound",
+          "created_at": "2026-07-12T16:30:00Z",
+          "content": "Marta busca compra en Majadahonda hasta 550.000 €. Muy concreta: a partir de una tercera planta, con ascensor imprescindible, orientación sur y plaza de garaje. Su madre tiene movilidad reducida.",
+          "metadata": { "duration_sec": 340, "audio_url": null }
+        }
+      ]
+    },
+    {
+      "id": "c-008",
+      "organization_id": "ORG-0031",
+      "full_name": "Roberto Sanz Oliva",
+      "phone": "+34 633 445 566",
+      "email": "rsanz.oliva@gmail.com",
+      "lead_source": "VOICE_CALL",
+      "contact_type": "INTERESTED",
+      "created_at": "2026-07-05T11:20:00Z",
+      "ai_handoff": false,
+      "is_test": false,
+      "assigned_agent_id": "usr-mario-ortega",
+      "matching_enabled": true,
+      "tags": null,
+      "notes": null,
+      "qualification_data": {
+        "net_income": 3200,
+        "income_verified": false,
+        "income_source": "declarado en llamada",
+        "income_updated_at": "2026-07-05T11:26:00Z",
+        "qualification": {
+          "sale": {
+            "zones": { "value": ["Pozuelo de Alarcón"], "source": "explicit", "confidence": "high", "updatedAt": "2026-07-05T11:24:00Z", "sourceRef": "conv-8740" },
+            "budget": { "value": { "max": 350000 }, "source": "manual", "updatedAt": "2026-07-10T09:15:00Z", "sourceRef": "manual" },
+            "bedrooms": { "value": 2, "source": "explicit", "confidence": "high", "updatedAt": "2026-07-05T11:25:00Z", "sourceRef": "conv-8740" }
+          }
+        }
+      },
+      "interest_preferences": null,
+      "interactions": [
+        {
+          "id": "i-1070",
+          "channel": "VOICE",
+          "direction": "inbound",
+          "created_at": "2026-07-05T11:20:00Z",
+          "content": "Roberto busca compra en Pozuelo, dijo un presupuesto de hasta trescientos mil euros, mínimo 2 habitaciones. Ingresos declarados: unos 3.200 € netos al mes.",
+          "metadata": {
+            "duration_sec": 298,
+            "audio_url": null,
+            "transcript_excerpt": "AGENTE: ¿Qué presupuesto tiene pensado?\nROBERTO: Pues hasta trescientos mil euros, más o menos.\nAGENTE: Perfecto, lo anoto."
+          }
+        },
+        {
+          "id": "i-1071",
+          "channel": "VOICE",
+          "direction": "outbound",
+          "created_at": "2026-07-10T09:05:00Z",
+          "content": "Llamada de seguimiento del agente Mario. Roberto comenta que finalmente podrían estirarse hasta 350.000 € si la vivienda merece la pena. Mario actualiza el presupuesto en la ficha a mano.",
+          "metadata": { "duration_sec": 145, "audio_url": null }
+        }
+      ]
+    },
+    {
+      "id": "c-009",
+      "organization_id": "ORG-0031",
+      "full_name": "carmen ruiz",
+      "phone": "655123456",
+      "email": null,
+      "lead_source": "whatsapp",
+      "contact_type": null,
+      "created_at": "2026-07-13T08:50:00Z",
+      "ai_handoff": false,
+      "is_test": false,
+      "assigned_agent_id": null,
+      "matching_enabled": true,
+      "tags": null,
+      "notes": null,
+      "qualification_data": null,
+      "interest_preferences": null,
+      "interactions": [
+        {
+          "id": "i-1080",
+          "channel": "whatsapp",
+          "direction": "inbound",
+          "created_at": "2026-07-13T08:50:00Z",
+          "content": "Buenos días, llamé la semana pasada por un piso en Majadahonda con terraza. ¿Me pueden mandar la ficha que me comentaron? Gracias",
+          "metadata": null
+        }
+      ]
+    },
+    {
+      "id": "c-010",
+      "organization_id": "ORG-0047",
+      "full_name": "Isabel Torres Milán",
+      "phone": "+34 611 78 90 12",
+      "email": "isabel.torresm@gmail.com",
+      "lead_source": "VOICE_CALL",
+      "contact_type": "INTERESTED",
+      "created_at": "2026-07-09T12:00:00Z",
+      "ai_handoff": false,
+      "is_test": false,
+      "assigned_agent_id": null,
+      "matching_enabled": true,
+      "tags": null,
+      "notes": null,
+      "qualification_data": {
+        "qualification": {
+          "rental": {
+            "zones": { "value": ["Sant Cugat del Vallès"], "source": "explicit", "confidence": "high", "updatedAt": "2026-07-09T12:04:00Z", "sourceRef": "conv-bcn-102" },
+            "budget": { "value": { "max": 1600 }, "source": "explicit", "confidence": "high", "updatedAt": "2026-07-09T12:05:00Z", "sourceRef": "conv-bcn-102" }
+          }
+        }
+      },
+      "interest_preferences": null,
+      "interactions": [
+        {
+          "id": "i-1090",
+          "channel": "VOICE",
+          "direction": "inbound",
+          "created_at": "2026-07-09T12:00:00Z",
+          "content": "Isabel busca alquiler en Sant Cugat hasta 1.600 €.",
+          "metadata": { "duration_sec": 230, "audio_url": null }
+        }
+      ]
+    },
+    {
+      "id": "c-011",
+      "organization_id": "ORG-0047",
+      "full_name": "Pablo Herrero Gil",
+      "phone": "+34 699 33 21 10",
+      "email": null,
+      "lead_source": "WHATSAPP",
+      "contact_type": null,
+      "created_at": "2026-07-11T10:10:00Z",
+      "ai_handoff": false,
+      "is_test": false,
+      "assigned_agent_id": null,
+      "matching_enabled": true,
+      "tags": null,
+      "notes": null,
+      "qualification_data": null,
+      "interest_preferences": null,
+      "interactions": [
+        {
+          "id": "i-1100",
+          "channel": "WHATSAPP",
+          "direction": "inbound",
+          "created_at": "2026-07-11T10:10:00Z",
+          "content": "Hola, ¿tenéis pisos en Sabadell centro?",
+          "metadata": null
+        }
+      ]
+    },
+    {
+      "id": "c-012",
+      "organization_id": "ORG-0031",
+      "full_name": null,
+      "phone": "+34611223344",
+      "email": null,
+      "lead_source": null,
+      "contact_type": null,
+      "created_at": 1782259200,
+      "ai_handoff": false,
+      "is_test": false,
+      "assigned_agent_id": null,
+      "matching_enabled": true,
+      "tags": null,
+      "notes": null,
+      "qualification_data": null,
+      "interest_preferences": null,
+      "interactions": []
+    },
+    {
+      "id": "c-013",
+      "organization_id": "ORG-0031",
+      "full_name": "Sofía Marín Costas",
+      "phone": "+34 644 78 12 90",
+      "email": "sofiamarin.c@gmail.com",
+      "lead_source": "WITEI",
+      "contact_type": "INTERESTED",
+      "created_at": "2026-07-06T09:00:00Z",
+      "ai_handoff": false,
+      "is_test": false,
+      "assigned_agent_id": null,
+      "matching_enabled": false,
+      "tags": ["no-llamar"],
+      "notes": "OJO: pidió por email que dejemos de llamarla — contactar SOLO por email.",
+      "qualification_data": {
+        "qualification": {
+          "sale": {
+            "zones": { "value": ["Boadilla del Monte"], "source": "explicit", "updatedAt": "2026-05-20T10:00:00Z", "sourceRef": "import-witei" }
+          }
+        }
+      },
+      "interest_preferences": null,
+      "interactions": [
+        {
+          "id": "i-1110",
+          "channel": "EMAIL",
+          "direction": "inbound",
+          "created_at": "2026-07-06T09:00:00Z",
+          "content": "Por favor, dejen de contactarme por teléfono. Si tienen algo que encaje con lo que busco, escríbanme por email únicamente.",
+          "metadata": null
+        }
+      ]
+    },
+    {
+      "id": "c-014",
+      "organization_id": "ORG-0031",
+      "full_name": "Prueba Prueba",
+      "phone": "+34600000000",
+      "email": "test@test.com",
+      "lead_source": "CRM",
+      "contact_type": null,
+      "created_at": "2026-06-02T15:00:00Z",
+      "ai_handoff": false,
+      "is_test": true,
+      "assigned_agent_id": null,
+      "matching_enabled": true,
+      "tags": null,
+      "notes": null,
+      "qualification_data": null,
+      "interest_preferences": null,
+      "interactions": []
+    },
+    {
+      "id": "c-015",
+      "organization_id": "ORG-0031",
+      "full_name": "MARÍA DOLORES GUTIÉRREZ SANTOS",
+      "phone": "+34-644-556-677",
+      "email": "mdolores@@gmail.com",
+      "lead_source": "WITEI",
+      "contact_type": "INTERESTED",
+      "created_at": "05/07/2026",
+      "ai_handoff": false,
+      "is_test": false,
+      "assigned_agent_id": null,
+      "matching_enabled": true,
+      "tags": null,
+      "notes": null,
+      "qualification_data": {
+        "qualification": {
+          "rental": {
+            "zones": { "value": ["Majadahonda"], "source": "explicit", "updatedAt": "2026-06-28T12:00:00Z", "sourceRef": "import-witei" },
+            "budget": { "value": { "max": 1500 }, "source": "explicit", "updatedAt": "2026-06-28T12:00:00Z", "sourceRef": "import-witei" }
+          },
+          "shared": {
+            "has_pets": { "value": "tiene un gato", "source": "explicit", "updatedAt": "2026-06-28T12:00:00Z", "sourceRef": "import-witei" }
+          }
+        }
+      },
+      "interest_preferences": null,
+      "interactions": [
+        {
+          "id": "i-1120",
+          "channel": "VOICE",
+          "direction": "outbound",
+          "created_at": "10/07/2026 18:42",
+          "content": "Llamada de seguimiento: sigue buscando, pide que le avisen si entra algo que admita mascotas en Majadahonda.",
+          "metadata": { "duration_sec": 95, "audio_url": null }
+        }
+      ]
+    },
+    {
+      "id": "c-016",
+      "organization_id": "ORG-0031",
+      "full_name": "Álvaro Quintana Ros",
+      "phone": "+34 688 11 22 33",
+      "email": "alvaroqr@gmail.com",
+      "lead_source": "WHATSAPP",
+      "contact_type": "INTERESTED",
+      "created_at": "2026-07-02T10:00:00Z",
+      "ai_handoff": true,
+      "handoff_reason": "Pide hablar con un humano — molesto porque su visita del sábado se canceló sin avisar",
+      "handoff_requested_at": "2026-07-13T19:22:00Z",
+      "is_test": false,
+      "assigned_agent_id": null,
+      "matching_enabled": true,
+      "tags": null,
+      "notes": null,
+      "qualification_data": {
+        "qualification": {
+          "rental": {
+            "zones": { "value": ["Las Rozas"], "source": "explicit", "confidence": "high", "updatedAt": "2026-07-02T10:05:00Z", "sourceRef": "conv-8650" },
+            "budget": { "value": { "max": 1300 }, "source": "explicit", "confidence": "high", "updatedAt": "2026-07-02T10:06:00Z", "sourceRef": "conv-8650" }
+          }
+        }
+      },
+      "interest_preferences": null,
+      "interactions": [
+        {
+          "id": "i-1130",
+          "channel": "VOICE",
+          "direction": "inbound",
+          "created_at": "2026-07-02T10:00:00Z",
+          "content": "Álvaro busca alquiler en Las Rozas hasta 1.300 €. Se le agendó visita para el sábado 12.",
+          "metadata": { "duration_sec": 265, "audio_url": null }
+        },
+        {
+          "id": "i-1131",
+          "channel": "WHATSAPP",
+          "direction": "inbound",
+          "created_at": "2026-07-13T19:22:00Z",
+          "content": "Me presenté el sábado en el piso y no había nadie. Nadie me avisó de que se cancelaba. Quiero hablar con una persona, no con el robot.",
+          "metadata": null
+        }
+      ]
+    }
+  ]
+}
