@@ -51,3 +51,4 @@ Horas reales, según el historial de git.
 | 15:56 | E4 · Stories | #10, #2 y #4 con 157 tests y 128 E2E; bug 2 |
 | 16:05 | Bonus voz | 46 tests del catálogo; simulaciones contra LiveKit Cloud 5/7 → 6/7; bug 7 |
 | 16:11 | Cierre | Arreglos de la revisión visual (bug 5) |
+| — | Prueba con micrófono | STT, tools y respuesta correctos; sin audio de respuesta (TTS pendiente), unos 10 s de latencia y «perro» → «PER». Documentado en `voice-agent/README.md` |

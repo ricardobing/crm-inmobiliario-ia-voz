@@ -142,10 +142,23 @@ Comprobado en las simulaciones:
 Pendiente (se cerró el timebox aquí): que el prompt obligue a decir «no aplica» sin convertirlo en un «no», y
 volver a pasar las simulaciones varias veces para medir la tasa de acierto, no una sola ejecución.
 
-## Qué NO se ha probado todavía
+## Prueba con micrófono (`lk agent console`, 28/09/2026)
 
-- **Voz real**: ni `lk agent console` con micrófono ni el playground. STT, TTS, turn detector y ai-coustics
-  están sin ejecutar con audio.
+| Pieza | Resultado |
+|---|---|
+| STT en español | ✓ Entendió «Busco alquilar en Majadahonda» y «Sí, dame más detalles». ✗ «perro» salió como «PER», así que no se filtró por mascotas |
+| Detector de turno | ✓ Cerró bien los turnos en español |
+| Tools | ✓ `buscar_propiedades` → MIR-2050 y `detalle_propiedad` → ficha completa, con los datos correctos |
+| Respuesta del LLM | ✓ Correcta, en castellano de España y con el precio hablado |
+| **TTS (voz de la respuesta)** | ✗ **No se oyó.** La respuesta aparece en texto. Hipótesis sin confirmar: la voz configurada (`gradium/default`, «Vera») no está disponible en LiveKit Inference |
+| Latencia | ✗ **Unos 10 s** entre la tool y la respuesta, muy lejos del objetivo de voz (< 1 s) |
+
+Próximos pasos para la voz:
+1. Probar otro TTS de LiveKit Inference cambiando `TTS_MODEL`/`TTS_VOICE` (por ejemplo, Cartesia) y mirar los
+   logs del TTS.
+2. Medir la latencia por etapa (LLM y TTS) y probar un LLM más rápido.
+3. Pasarle al STT palabras clave del dominio («perro», «mascota», las zonas del catálogo) para reducir errores
+   como «PER».
 - La voz **Vera de Gradium**: aparece en la documentación, pero el SDK 1.8.3 no incluye `gradium/...` en sus
   tipos de modelos TTS (acepta cualquier string). Si no suena, el respaldo del servidor debería pasar a Cartesia
   "Daniela" (es-MX). Si tampoco anda, probar `TTS_MODEL=deepgram/aura-2` con una voz en español de Deepgram

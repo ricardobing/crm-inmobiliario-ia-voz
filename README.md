@@ -155,8 +155,14 @@ Es **mi primer agente de voz**, y lo dije desde el principio. Está hecho con Li
 - **Se despide y cuelga solo.**
 
 Con las simulaciones de texto contra LiveKit Cloud pasé de 5/7 a 6/7 escenarios. Queda pendiente que no
-convierta "no aplica" en "no tiene". No lo probé todavía con voz real (micrófono o teléfono). Detalle en
-[`voice-agent/README.md`](voice-agent/README.md).
+convierta "no aplica" en "no tiene".
+
+**Prueba con micrófono:**
+- entiende en español, busca en el catálogo y contesta bien;
+- **todavía no sale el audio de la respuesta**: el TTS está pendiente;
+- tarda unos 10 s en responder.
+
+Detalle y próximos pasos en [`voice-agent/README.md`](voice-agent/README.md).
 
 ## Qué haría con un día más
 
