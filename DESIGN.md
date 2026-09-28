@@ -29,7 +29,8 @@ naranja, chips de marca, tipografía de titulares), no en la decoración.
 - Movimiento: solo de estado (plegables y hover, 150–200 ms).
 
 ## Componentes
-shadcn/ui (Radix) reestilado con los tokens: `Button`, `Badge`, `Card`, `Tooltip`, `Collapsible`, `Skeleton` y `Alert`.
+shadcn/ui (Radix) reestilado con los tokens: `Button`, `Card`, `Tooltip`, `Collapsible` y `Skeleton`. Los avisos
+(`StatusBanner`) y los estados vacíos son componentes propios en `src/features/shared`.
 Los componentes de producto están en `src/features/*` y no llevan colores sueltos.
 
 ## Cómo cambiar el diseño

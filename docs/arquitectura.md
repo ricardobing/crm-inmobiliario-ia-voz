@@ -13,7 +13,7 @@
 | Fetch en cliente | **TanStack Query** | Estados de carga y error reales (R5), reintento controlado y caché entre listado y ficha |
 | Validación | **zod**, en modo tolerante para la entrada | Un contacto roto no tumba el listado: se lee lo que se puede y se reporta lo que no |
 | Teléfonos | **libphonenumber-js** | No reinventar la normalización (D04) |
-| Fechas | **date-fns** + **@date-fns/tz** | Parseo de formatos mixtos e interpretación en `Europe/Madrid` (D06) |
+| Fechas | **@date-fns/tz** (`TZDate`) + `Intl.DateTimeFormat` | Interpretación de fechas sin zona en `Europe/Madrid` y formato con zona explícita (D06) |
 | Iconos | **lucide-react** (viene con shadcn) | — |
 | Tests | **Vitest** para el dominio (funciones puras) | Rápido. Verifica cada decisión con los datos reales |
 | Tipos/lint | `tsc --noEmit` + ESLint de Next | — |
@@ -130,6 +130,9 @@ Los tests van junto al código: `src/domain/**/*.test.ts`, más `src/domain/data
 dataset real completo.
 
 ## 5. Modelo de dominio (tipos clave)
+
+Esquema de diseño previo a la implementación. La fuente de verdad de los tipos es `src/domain/types.ts`, que
+además incluye, por ejemplo, `display` en `DateView` y la política, los duplicados y las acciones en `ContactDetail`.
 
 ```ts
 // Fechas: conservar crudo y precisión (D06)

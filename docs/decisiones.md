@@ -187,11 +187,10 @@ Cada decisión tiene un id para citarla desde el código (comentario corto), los
     sin una persona.
 - **D23 · Siguiente mejor acción (#4).** Reglas deterministas, no LLM: explicables (cada sugerencia dice por qué), gratis,
   testeables y sin clave de API para quien evalúe. Siempre respetan cumplimiento: si el canal ideal está bloqueado, se
-  cae al siguiente permitido. "La IA entiende, el sistema decide."
-- **D24 · "Ahora".** El reloj es inyectable. Ninguna regla depende de la antigüedad del dato: el dataset es de julio y
-  "hace 3 meses" no aportaría nada.
-
-### Observaciones sin acción
+  cae al siguiente permitido; si ninguno lo está, la sugerencia lo dice en vez de proponer un canal bloqueado.
+  "La IA entiende, el sistema decide."
+- **D24 · "Ahora".** Ninguna regla depende de la fecha actual: el dataset es de julio y "hace 3 meses" no aportaría
+  nada. Por eso no hizo falta un reloj; si una regla futura lo necesita, debe recibirlo como parámetro.
 - **D25 · Inconsistencia del bot (c-004).** El bot de WhatsApp ofreció 2 habitaciones en Majadahonda por 1.350 €/mes
   (calle Sorolla). En el catálogo, MIR-2050 (Majadahonda) cuesta 1.100 € y MIR-2044 (1.350 €) está en Las Rozas. No se
   corrige nada: puede ser un inmueble fuera del catálogo o una alucinación. Es el argumento para que el agente de voz
@@ -228,21 +227,39 @@ Cada decisión tiene un id para citarla desde el código (comentario corto), los
 
 ### Siguiente mejor acción
 
-| id | Principal | Secundarias | Canal |
+Resultado real del motor de reglas (`src/domain/stories.test.ts` lo verifica, contacto por contacto).
+
+| id | Principal | Después | Canal |
 |---|---|---|---|
-| c-001 | Revisar posible duplicado (c-009) | Proponer inmuebles / agendar visita | — / llamada |
-| c-002 | Proponer inmuebles / agendar visita | — | llamada |
-| c-003 | Proponer inmuebles / agendar visita | — | llamada |
-| c-004 | Responder / hacer seguimiento del último mensaje | Cualificar | WhatsApp |
-| c-005 | Responder a su solicitud (MIR-2041) | Cualificar | **email** (no hay teléfono) |
-| c-006 | Llamar para cualificar (se le propuso por WhatsApp) | — | llamada |
-| c-007 | Proponer inmuebles / agendar visita | — | llamada |
-| c-008 | Proponer inmuebles / agendar visita | — | llamada |
-| c-009 | Revisar posible duplicado (c-001) | Responder su mensaje (pide la ficha) | — / WhatsApp |
-| c-012 | Primer contacto: llamar para cualificar | — | llamada |
-| c-013 | Contactar solo por email (pidió no ser llamada) | Confirmarle por email que no se la volverá a llamar | **email** |
-| c-015 | Proponer inmuebles / agendar visita | Corregir el email (formato no válido) | llamada |
-| c-016 | **Llamar ya: pidió hablar con una persona** (visita cancelada sin aviso) | — | llamada |
+| c-001 | Revisar el posible duplicado antes de contactar (c-009) | Proponer inmuebles y agendar visita | — · llamada |
+| c-002 | Proponer inmuebles y agendar visita | — | llamada |
+| c-003 | Proponer inmuebles y agendar visita | — | llamada |
+| c-004 | Responder a su último mensaje | Llamar para cualificar | WhatsApp · llamada |
+| c-005 | Responder a su último mensaje (formulario de MIR-2041) | Llamar para cualificar | **email** · email (no hay teléfono) |
+| c-006 | Llamar para cualificar (se le propuso por WhatsApp y no contestó) | — | llamada |
+| c-007 | Proponer inmuebles y agendar visita | — | llamada |
+| c-008 | Proponer inmuebles y agendar visita | — | llamada |
+| c-009 | Revisar el posible duplicado (c-001) | Responder a su último mensaje · Llamar para cualificar | — · WhatsApp · llamada |
+| c-012 | Llamar para cualificar (nunca se habló con él) | — | llamada |
+| c-013 | Contactar solo por email (pidió que no la llamen) | Responder a su último mensaje · Completar la cualificación (falta presupuesto) | **email** en las tres |
+| c-014 | Sin acción: es un contacto de prueba | — | — |
+| c-015 | Proponer inmuebles y agendar visita | Corregir el email | llamada · — |
+| c-016 | **Llamar ya: pidió hablar con una persona** | Proponer inmuebles y agendar visita | llamada · llamada |
+
+Reglas, por prioridad:
+1. prueba (exclusiva);
+2. handoff (sustituye a "responder");
+3. posible duplicado;
+4. no llamar;
+5. sin canal utilizable;
+6. mensaje sin responder;
+7. cualificar;
+8. completar la cualificación;
+9. proponer inmuebles;
+10. corregir el email.
+
+Una **llamada entrante no cuenta como mensaje sin responder**: es una conversación que ya se atendió. Solo
+cuentan WhatsApp, email y formulario.
 
 ### Cumplimiento
 
