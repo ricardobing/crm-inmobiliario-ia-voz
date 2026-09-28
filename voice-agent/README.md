@@ -31,8 +31,8 @@ la web**, no una copia.
 |---|---|
 | `src/catalog.py` | Carga tolerante del JSON y funciones puras: `buscar_propiedades`, `detalle_propiedad` y el formato para voz. No depende del SDK |
 | `src/agent.py` | Agente de LiveKit: prompt, tools, `AgentSession` y `AgentServer`. Mismo layout que [agent-starter-python](https://github.com/livekit-examples/agent-starter-python) |
-| `tests/` | pytest: catálogo (escenarios del plan, tildes, null, precios hablados) y prompt/saludo sin credenciales |
-| `scenarios.yaml` | 6 escenarios de `plan/04 §5`, más uno extra de visita, para `lk agent simulate` |
+| `tests/` | pytest: catálogo (escenarios de prueba, tildes, null, precios hablados) y prompt/saludo sin credenciales |
+| `scenarios.yaml` | 6 escenarios de prueba del bonus (búsqueda, fuera de catálogo, barge-in, despedida…) más uno extra de visita, para `lk agent simulate` |
 
 Reglas del catálogo: la zona se compara sin mayúsculas ni tildes y por contención en los dos sentidos
 ("pozuelo" ↔ "Pozuelo de Alarcón"); "compra" equivale a venta; el precio tiene que ser ≤ presupuesto, sin

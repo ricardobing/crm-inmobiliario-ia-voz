@@ -49,3 +49,21 @@ next-env.d.ts
 # Playwright
 /test-results/
 /playwright-report/
+
+# --- Material del reto que la app no usa (solo se versionan data/contactos.json y data/kb-propiedades-voz.json) ---
+tech-spec-ficha-contactos.md
+reto-tech-kontaktu/
+__MACOSX/
+*.zip
+
+# --- Documentos internos de preparación (no forman parte de la entrega) ---
+plan/
+KONTAKTU_AI_info.md
+PRODUCT.md
+.impeccable/
+
+# --- Varios ---
+*.log
+.vscode/
+.idea/
+/playwright/.cache/

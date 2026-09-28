@@ -5,7 +5,7 @@
 #   lk agent simulate text --scenarios scenarios.yaml
 #
 # Requiere LiveKit CLI autenticado contra un proyecto de LiveKit Cloud (usa créditos del plan).
-# Los seis primeros son los de plan/04 §5. El 5 (barge-in) en modo texto solo prueba que el
+# Los seis primeros son los escenarios de prueba definidos para el bonus. El 5 (barge-in) en modo texto solo prueba que el
 # agente sigue el cambio de rumbo; la interrupción de verdad se prueba hablando
 # (lk agent console) o con `lk agent simulate audio`.
 name: Agente de voz Miralvento
@@ -98,7 +98,7 @@ scenarios:
     tags:
       feature: colgar
 
-  # Extra, fuera de plan/04 §5: la visita no se promete como confirmada.
+  # Extra: la visita no se promete como confirmada.
   - label: "7 · Pide visita (extra)"
     instructions: |
       PERSONA: Laura, que quiere ver un piso de alquiler. Habla siempre en castellano de España.
