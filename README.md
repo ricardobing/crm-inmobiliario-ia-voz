@@ -181,11 +181,10 @@ convierta "no aplica" en "no tiene". No lo probé todavía con voz real (micróf
 
 ## Tiempo
 
-Horas según el historial de git:
-- **Lectura, análisis y plan:** unos 40 minutos antes de escribir código. Incluye preguntar por el diseño que
-  faltaba.
-- **Construcción:** de 14:50 a 16:20 aproximadamente (≈ 1 h 30 min), bonus de voz incluido. El bonus lo construyó
-  un subagente de Claude Code en paralelo a las stories.
+**1 h 29 min**, de 14:50 a 16:19 según el historial de git (del primer al último commit de la construcción),
+bonus de voz incluido. El bonus lo construyó un subagente de Claude Code en paralelo a las stories.
+
+El análisis del dataset y el plan (`docs/decisiones.md`, `docs/arquitectura.md`) se escribieron antes de empezar.
 
 ## Estructura
 
