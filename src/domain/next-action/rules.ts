@@ -36,10 +36,10 @@ const PHONE_FIRST: RuleOutcome["channels"] = ["call", "whatsapp", "email"];
  * Canales asíncronos: un mensaje entrante sin respuesta posterior está pendiente.
  * Una llamada entrante no: es una conversación que ya se atendió.
  */
-const REPLY_CHANNEL: Partial<Record<ChannelKind, RuleOutcome["channels"]>> = {
-  whatsapp: ["whatsapp", "call", "email"],
-  email: ["email", "call", "whatsapp"],
-  web_form: ["email", "call", "whatsapp"],
+const REPLY_CHANNEL: Partial<Record<ChannelKind, { channels: RuleOutcome["channels"]; phrase: string }>> = {
+  whatsapp: { channels: ["whatsapp", "call", "email"], phrase: "Escribió por WhatsApp" },
+  email: { channels: ["email", "call", "whatsapp"], phrase: "Escribió por email" },
+  web_form: { channels: ["email", "call", "whatsapp"], phrase: "Envió el formulario web" },
 };
 
 export const RULES: NextActionRule[] = [
@@ -106,10 +106,11 @@ export const RULES: NextActionRule[] = [
     },
     build: ({ contact }) => {
       const last = contact.timeline[0];
+      const reply = last ? REPLY_CHANNEL[last.channel.kind] : undefined;
       return {
         title: "Responder a su último mensaje",
-        reason: last ? `Escribió por ${last.channel.label.toLowerCase()} el ${last.at.display} y no tiene respuesta.` : "",
-        channels: (last && REPLY_CHANNEL[last.channel.kind]) ?? PHONE_FIRST,
+        reason: last && reply ? `${reply.phrase} el ${last.at.display} y no tiene respuesta.` : "",
+        channels: reply?.channels ?? PHONE_FIRST,
       };
     },
   },

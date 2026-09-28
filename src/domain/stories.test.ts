@@ -150,6 +150,12 @@ describe("#4 Siguiente mejor acción: tabla de docs/decisiones.md §5 (D23)", ()
     expect(actions.map((a) => a.channel)).toEqual(channels);
   });
 
+  it("el motivo respeta el nombre del canal (WhatsApp, no «whatsapp»)", () => {
+    const reply = insightsOf("c-004").actions.find((a) => a.ruleId === "unanswered-inbound");
+    expect(reply?.reason).toBe("Escribió por WhatsApp el 11/07/2026 · 22:22 y no tiene respuesta.");
+    expect(insightsOf("c-005").actions[0]?.reason).toBe("Envió el formulario web el 11/07/2026 · 18:42 y no tiene respuesta.");
+  });
+
   it("cada sugerencia explica por qué", () => {
     for (const c of org) {
       for (const action of insightsOf(c.id).actions) expect(action.reason.length).toBeGreaterThan(10);

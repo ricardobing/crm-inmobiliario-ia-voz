@@ -28,14 +28,14 @@ export function StatusBanner({
   return (
     <div
       role={tone === "danger" ? "alert" : "status"}
-      className={cn("flex flex-col gap-3 rounded-lg border px-4 py-3 sm:flex-row sm:items-start", TONES[tone])}
+      className={cn("flex flex-wrap items-start gap-x-3 gap-y-2 rounded-lg border px-4 py-3", TONES[tone])}
     >
       <Icon aria-hidden="true" className="mt-0.5 size-5 shrink-0" />
-      <div className="min-w-0 flex-1">
+      <div className="min-w-0 flex-1 basis-48">
         <p className="font-semibold">{title}</p>
         {children ? <div className="mt-0.5 text-sm text-foreground/80">{children}</div> : null}
       </div>
-      {action ? <div className="shrink-0">{action}</div> : null}
+      {action ? <div className="shrink-0 max-sm:w-full max-sm:pl-8">{action}</div> : null}
     </div>
   );
 }
