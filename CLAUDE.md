@@ -25,4 +25,8 @@ Spec: `docs/decisiones.md` (D01–D25) y `docs/arquitectura.md`. Si algo no est�
 - User stories: SOLO #10 Cumplimiento, #2 Duplicados y #4 Siguiente mejor acción. No añadir otras.
 - Listado mínimo (R1): sin búsqueda, filtros ni paginación.
 - Cada decisión no obvia lleva un comentario corto con su id: `// D06`.
-- Antes de dar algo por terminado: `pnpm test && pnpm typecheck && pnpm lint`.
+- **Pruebas obligatorias** (ver docs/arquitectura.md §9):
+  - toda función exportada de `src/domain` y `src/server` tiene test;
+  - los route handlers se prueban (200/404/500);
+  - cada pantalla y estado tiene su E2E con Playwright y se revisa en el navegador antes de cerrar la etapa.
+- Antes de dar algo por terminado: `pnpm verify` (typecheck + lint + test + e2e).

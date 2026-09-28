@@ -227,7 +227,8 @@ type ContactDetail = ContactSummary & {
    `API_LATENCY_MS=400`, `ALLOW_FAULT_INJECTION=true` (false en producción).
 5. **Reglas de siguiente acción como lista de objetos** `{ id, priority, applies(ctx), build(ctx) }`. Añadir una regla =
    añadir un objeto con su test. No un `if/else` gigante.
-6. **Textos de UI centralizados por feature** (constantes), no desperdigados.
+6. **Etiquetas de datos desde el dominio** (catálogos de canales, claves, grupos, procedencias); los textos fijos de
+   interfaz viven en el componente que los usa. Así, la UI no traduce valores crudos.
 7. **Fechas siempre formateadas con `timeZone` explícita.** Nunca `toLocaleString()` sin zona.
 
 ## 7. Diseño: tokens
@@ -281,3 +282,18 @@ con icono y texto** (nunca el color solo, por accesibilidad).
 ```
 
 En móvil va en una sola columna, con la siguiente acción arriba.
+
+## 9. Estrategia de pruebas (obligatoria)
+
+Toda función se prueba. Una etapa no se da por terminada hasta que sus pruebas están en verde **y** se vio funcionando
+en el navegador.
+
+| Nivel | Herramienta | Qué cubre | Dónde |
+|---|---|---|---|
+| Unitario (dominio) | Vitest | **Cada función exportada** de `src/domain`: fechas, teléfonos, nombres, email, canales, cualificación, precedencia, timeline, cumplimiento, duplicados, siguiente acción | `src/domain/**/*.test.ts` |
+| Contrato con el dataset | Vitest | Los 16 contactos reales contra la tabla de `decisiones.md §5` | `src/domain/dataset.contract.test.ts` |
+| Servidor y API | Vitest | Config, repositorio (aislamiento por organización), servicio y route handlers: 200/404/500, contactos de prueba, error simulado, mismo cuerpo para "otra organización" e "inexistente" | `src/server/**/*.test.ts`, `src/app/api/**/*.test.ts` |
+| E2E en navegador | Playwright | Listado, **todas** las fichas de la organización, estados de carga, error, no encontrado y ficha vacía, plegables, botones bloqueados por cumplimiento, duplicados, siguiente acción, móvil (375px), sin errores de consola | `e2e/*.spec.ts` |
+| Verificación visual | Navegador integrado + capturas | Revisión humana de cada ficha en escritorio y móvil | `docs/capturas/` |
+
+Comandos: `pnpm test` (unitario + API), `pnpm test:e2e` (navegador), `pnpm verify` (typecheck + lint + test + e2e).

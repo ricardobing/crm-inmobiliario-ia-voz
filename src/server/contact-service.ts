@@ -1,6 +1,6 @@
 import "server-only";
 import { normalizeContact, toContactSummary } from "@/domain/normalize-contact";
-import type { ContactCore, ContactDetail, ContactPolicy } from "@/domain/types";
+import type { ContactCore, ContactDetail, ContactPolicy, DomainContext } from "@/domain/types";
 import type { ContactDetailResponse, ContactListResponse } from "@/lib/api/contracts";
 import { loadCatalog } from "./catalog-repository";
 import { config } from "./config";
@@ -14,6 +14,7 @@ export class ContactService {
   constructor(
     private readonly repository: ContactRepository,
     private readonly dataDir: string,
+    private readonly domain: DomainContext,
   ) {}
 
   async list(): Promise<ContactListResponse> {
@@ -46,7 +47,7 @@ export class ContactService {
     return {
       organization: snapshot.organization,
       unreadableCount: snapshot.unreadableCount,
-      contacts: snapshot.contacts.map((raw) => normalizeContact(raw, config.domain, catalog)),
+      contacts: snapshot.contacts.map((raw) => normalizeContact(raw, this.domain, catalog)),
     };
   }
 
@@ -68,4 +69,5 @@ const OPEN_POLICY: ContactPolicy = {
 export const contactService = new ContactService(
   new JsonContactRepository(config.dataDir, config.organizationIdOverride),
   config.dataDir,
+  config.domain,
 );

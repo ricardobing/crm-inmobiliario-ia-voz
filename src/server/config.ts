@@ -25,19 +25,22 @@ const envSchema = z.object({
   DATA_DIR: z.string().trim().min(1).optional(),
 });
 
-const env = envSchema.parse(process.env);
+export type AppConfig = ReturnType<typeof parseConfig>;
 
-export const config = {
-  organizationIdOverride: env.KONTAKTU_ORG_ID ?? null,
-  domain: {
-    timeZone: env.DISPLAY_TIMEZONE,
-    locale: env.LOCALE,
-    currency: env.CURRENCY,
-    phoneRegion: env.DEFAULT_PHONE_REGION.toUpperCase(),
-  },
-  apiLatencyMs: env.API_LATENCY_MS,
-  allowFaultInjection: env.ALLOW_FAULT_INJECTION
-    ? env.ALLOW_FAULT_INJECTION === "true"
-    : process.env.NODE_ENV !== "production",
-  dataDir: env.DATA_DIR ?? path.join(process.cwd(), "data"),
-} as const;
+export function parseConfig(source: Record<string, string | undefined>, nodeEnv = source.NODE_ENV) {
+  const env = envSchema.parse(source);
+  return {
+    organizationIdOverride: env.KONTAKTU_ORG_ID ?? null,
+    domain: {
+      timeZone: env.DISPLAY_TIMEZONE,
+      locale: env.LOCALE,
+      currency: env.CURRENCY,
+      phoneRegion: env.DEFAULT_PHONE_REGION.toUpperCase(),
+    },
+    apiLatencyMs: env.API_LATENCY_MS,
+    allowFaultInjection: env.ALLOW_FAULT_INJECTION ? env.ALLOW_FAULT_INJECTION === "true" : nodeEnv !== "production",
+    dataDir: env.DATA_DIR ?? path.join(process.cwd(), "data"),
+  } as const;
+}
+
+export const config: AppConfig = parseConfig(process.env);

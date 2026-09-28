@@ -99,3 +99,19 @@ describe("normalizeChannel (D07)", () => {
     expect(normalizeChannel("IDEALISTA", UNKNOWN_SOURCE_LABEL)).toEqual({ kind: "other", label: "Idealista", raw: "IDEALISTA" });
   });
 });
+
+describe("rawContactSchema (lectura tolerante)", () => {
+  it("un contacto con solo id se lee: el resto de campos puede faltar", async () => {
+    const { rawContactSchema } = await import("./raw-schema");
+    expect(rawContactSchema.safeParse({ id: "a" }).success).toBe(true);
+  });
+  it("un campo con tipo inesperado se trata como ausente, sin tumbar el contacto", async () => {
+    const { rawContactSchema } = await import("./raw-schema");
+    const parsed = rawContactSchema.parse({ id: "a", full_name: 42, is_test: "sí", tags: "no-llamar" });
+    expect(parsed).toMatchObject({ id: "a", full_name: null, is_test: null, tags: null });
+  });
+  it("sin id no se puede leer", async () => {
+    const { rawContactSchema } = await import("./raw-schema");
+    expect(rawContactSchema.safeParse({ full_name: "x" }).success).toBe(false);
+  });
+});

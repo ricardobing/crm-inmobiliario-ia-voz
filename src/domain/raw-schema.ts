@@ -33,8 +33,9 @@ export const rawContactSchema = z.looseObject({
   matching_enabled: optionalBoolean,
   tags: z.array(z.unknown()).nullish().catch(null),
   notes: optionalText,
-  qualification_data: z.unknown(),
-  interest_preferences: z.unknown(),
+  // zod 4: `z.unknown()` a secas hace la clave obligatoria; aquí puede faltar.
+  qualification_data: z.unknown().optional(),
+  interest_preferences: z.unknown().optional(),
   interactions: z.array(z.unknown()).nullish().catch(null),
 });
 

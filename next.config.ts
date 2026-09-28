@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Sin el indicador flotante de desarrollo: tapa contenido en las capturas de verificación.
+  devIndicators: false,
 };
 
 export default nextConfig;
