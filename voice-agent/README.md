@@ -144,30 +144,33 @@ volver a pasar las simulaciones varias veces para medir la tasa de acierto, no u
 
 ## Prueba con micrófono (`lk agent console`, 28/09/2026)
 
+Dos sesiones reales con micrófono y altavoz. Las métricas son las que muestra la consola en cada turno.
+
 | Pieza | Resultado |
 |---|---|
-| STT en español | ✓ Entendió «Busco alquilar en Majadahonda» y «Sí, dame más detalles». ✗ «perro» salió como «PER», así que no se filtró por mascotas |
-| Detector de turno | ✓ Cerró bien los turnos en español |
+| Saludo | ✓ Se presenta como asistente de inteligencia artificial de Miralvento |
+| STT en español | ✓ Entendió «Busco alquilar en Majadahonda», «Para comprar» y «Sí, dame más detalles». ✗ En una sesión, «perro» salió como «PER» y no se filtró por mascotas |
 | Tools | ✓ `buscar_propiedades` → MIR-2050 y `detalle_propiedad` → ficha completa, con los datos correctos |
-| Respuesta del LLM | ✓ Correcta, en castellano de España y con el precio hablado |
-| **TTS (voz de la respuesta)** | ✗ **No se oyó.** La respuesta aparece en texto. Hipótesis sin confirmar: la voz configurada (`gradium/default`, «Vera») no está disponible en LiveKit Inference |
-| Latencia | ✗ **Unos 10 s** entre la tool y la respuesta, muy lejos del objetivo de voz (< 1 s) |
+| Voz (TTS) | ✓ Se oye. Primer audio en **0,36–0,72 s** |
+| LLM | ✓ Primer token en **0,38–0,48 s**. Respuestas en castellano de España, con el precio hablado y una pregunta por turno |
+| **Latencia de extremo a extremo** | **0,7–2,9 s** por turno (métrica `e2e`), desde que el usuario deja de hablar hasta que el agente empieza a responder |
+| Interrupciones (barge-in) | ✓ Si el usuario habla encima, el agente se calla (`Agent (interrupted)`) y retoma con cortesía |
+| Ruido de conversación ajena | ✓ Cuando el usuario habló con otra persona, respondió «No se preocupe…» y volvió a preguntar por la zona |
 
-Próximos pasos para la voz:
-1. Probar otro TTS de LiveKit Inference cambiando `TTS_MODEL`/`TTS_VOICE` (por ejemplo, Cartesia) y mirar los
-   logs del TTS.
-2. Medir la latencia por etapa (LLM y TTS) y probar un LLM más rápido.
-3. Pasarle al STT palabras clave del dominio («perro», «mascota», las zonas del catálogo) para reducir errores
-   como «PER».
-- La voz **Vera de Gradium**: aparece en la documentación, pero el SDK 1.8.3 no incluye `gradium/...` en sus
-  tipos de modelos TTS (acepta cualquier string). Si no suena, el respaldo del servidor debería pasar a Cartesia
-  "Daniela" (es-MX). Si tampoco anda, probar `TTS_MODEL=deepgram/aura-2` con una voz en español de Deepgram
-  (la documentación no lista el nombre de ninguna voz es-ES).
-- Si Gemma 4 llama bien a las tools en español y respeta "una pregunta por turno".
-- El barge-in (escenario 5): en modo texto solo se prueba el cambio de rumbo. La interrupción real se prueba
-  hablando.
-- Si el cuelgue borra la sala en `console` (`delete_room=True` es para salas reales y SIP).
-- La latencia: queda pendiente medirla con voz.
+> **Corrección de una medición.** En la primera sesión anoté «unos 10 s» de latencia y «no suena el TTS». Ninguna
+> de las dos cosas era cierta:
+> - el altavoz estaba en silencio;
+> - leí mal el log: `conversation_item_added` se registra cuando el agente **termina** de hablar, así que esos 10 s
+>   eran la duración de la respuesta, no la latencia.
+>
+> La métrica correcta es la `e2e` de la consola.
+
+Pendiente:
+- **«PER» por «perro»:** pasarle al STT palabras clave del dominio (mascota, perro, gato, las zonas del catálogo).
+- **Latencia:** bajar el extremo alto (2,9 s), con un LLM más rápido o respuestas más cortas tras las tools.
+- **«No aplica» → «no tiene»:** el fallo de la simulación con el chalet (ver arriba).
+- **Cuelgue en `console`:** no está confirmado que borre la sala; `delete_room=True` es para salas reales y SIP. En
+  las simulaciones sí la borró.
 
 ## Próximos pasos
 

@@ -29,6 +29,7 @@ pasaron.
 | 6 | **Next.js 16:** trae un `AGENTS.md` que avisa que su API difiere de lo que conoce la IA | Lo leí al crear el proyecto | Antes de escribir rutas leí la documentación local: `params` es una promesa (`RouteContext`, `PageProps`) |
 | 7 | **Voz, prompt:** mi script para editar el prompt falló (error de Python) y volví a correr las simulaciones creyendo que el cambio estaba aplicado | Vi el traceback en la salida: 4/7 con el mismo prompt que antes había dado 5/7 | Edición con el editor y nueva corrida: 6/7. Aprendizaje: **una sola ejecución de un LLM no es una medida** |
 | 8 | **Voz, subagente:** según su propio informe, al leer el código del SDK encontró que una tool que devuelve un dict le llega al LLM como repr de Python, y que `EndCallTool` genera la despedida *después* de colgar | Lectura del código instalado de `livekit-agents` 1.8.3 | Las tools devuelven JSON y el prompt pide llamar a `end_call` sin despedirse antes |
+| 9 | **Lectura de logs:** tras la primera prueba con micrófono, la IA (yo, desde los logs de la terminal) informó «unos 10 s de latencia» y «no suena el TTS» | El usuario tenía el altavoz en silencio; en la segunda sesión la consola mostraba la métrica `e2e` (0,7–2,9 s). El evento que había medido, `conversation_item_added`, se registra al **terminar** de hablar | README corregido con la métrica real y una nota explícita de la corrección |
 
 ### Los tests también se equivocaron (y conviene contarlo)
 - Selectores ambiguos: al agregar los paneles de las stories, textos como "Sin email" o "1.400 €/mes" aparecían dos
@@ -51,4 +52,4 @@ Horas reales, según el historial de git.
 | 15:56 | E4 · Stories | #10, #2 y #4 con 157 tests y 128 E2E; bug 2 |
 | 16:05 | Bonus voz | 46 tests del catálogo; simulaciones contra LiveKit Cloud 5/7 → 6/7; bug 7 |
 | 16:11 | Cierre | Arreglos de la revisión visual (bug 5) |
-| — | Prueba con micrófono | STT, tools y respuesta correctos; sin audio de respuesta (TTS pendiente), unos 10 s de latencia y «perro» → «PER». Documentado en `voice-agent/README.md` |
+| — | Prueba con micrófono | STT, tools, voz y respuesta correctos; latencia `e2e` de 0,7–2,9 s; barge-in OK; «perro» → «PER» en una sesión. Detalle en `voice-agent/README.md` |

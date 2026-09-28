@@ -158,9 +158,11 @@ Con las simulaciones de texto contra LiveKit Cloud pasé de 5/7 a 6/7 escenarios
 convierta "no aplica" en "no tiene".
 
 **Prueba con micrófono:**
-- entiende en español, busca en el catálogo y contesta bien;
-- **todavía no sale el audio de la respuesta**: el TTS está pendiente;
-- tarda unos 10 s en responder.
+- entiende en español, busca en el catálogo y responde con voz;
+- **latencia de 0,7 a 2,9 s** por turno;
+- se deja interrumpir.
+
+Queda afinar que «perro» se transcriba bien.
 
 Detalle y próximos pasos en [`voice-agent/README.md`](voice-agent/README.md).
 
