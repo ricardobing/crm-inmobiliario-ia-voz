@@ -82,7 +82,8 @@ Cada decisión tiene un id para citarla desde el código (comentario corto), los
 ### Alcance y seguridad
 - **D01 · Multi-organización.** Solo se sirven contactos de la organización activa (configurable; por defecto, la dueña
   del export, `ORG-0031`). c-010 y c-011 no aparecen. `GET /api/contacts/c-010` devuelve **404, no 403**, para no revelar
-  que existe. Los duplicados nunca cruzan organizaciones.
+  que existe. Un contacto sin `organization_id` tampoco se sirve: no se puede probar que es de la organización. Los
+  duplicados nunca cruzan organizaciones.
 - **D02 · Contactos de prueba.** `is_test` queda fuera del listado (con un contador "1 contacto de prueba oculto"), fuera
   de duplicados y sin acciones. Por URL se ve con un banner "Contacto de prueba".
 
