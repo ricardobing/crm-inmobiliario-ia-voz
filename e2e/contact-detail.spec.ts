@@ -56,8 +56,9 @@ test.describe("Cualificación dinámica (R3)", () => {
 
   test("c-003: la cualificación en string JSON se interpreta", async ({ page }) => {
     await openContact(page, "c-003");
-    await expect(page.getByText(/recibido como texto JSON e interpretado/)).toBeVisible();
-    await expect(page.getByText("1.400 €/mes")).toBeVisible();
+    const q = page.locator("[aria-labelledby='qualification-title']");
+    await expect(q.getByText(/recibido como texto JSON e interpretado/)).toBeVisible();
+    await expect(q.getByText("1.400 €/mes")).toBeVisible();
   });
 
   test("c-007: claves desconocidas con etiqueta legible y la clave original a mano", async ({ page }) => {
@@ -142,6 +143,6 @@ test.describe("Cabecera (R2)", () => {
 
   test("c-014: contacto de prueba señalado", async ({ page }) => {
     await openContact(page, "c-014");
-    await expect(page.getByText("Contacto de prueba", { exact: true })).toBeVisible();
+    await expect(page.getByRole("status").filter({ hasText: "Contacto de prueba" })).toBeVisible();
   });
 });

@@ -120,3 +120,23 @@ describe("ContactService", () => {
     expect(c012?.lastInteraction).toBeNull();
   });
 });
+
+describe("ContactService: stories (#10, #2, #4)", () => {
+  it("la ficha incluye política, duplicados, propuesta de fusión y siguiente acción", async () => {
+    const detail = (await serviceFor(null).get("c-009"))?.contact;
+    expect(detail?.policy.call.allowed).toBe(true);
+    expect(detail?.duplicates.map((d) => d.id)).toEqual(["c-001"]);
+    expect(detail?.mergePreview?.survivorId).toBe("c-001");
+    expect(detail?.nextActions[0]?.ruleId).toBe("possible-duplicate");
+  });
+
+  it("los flags del listado salen de las reglas", async () => {
+    const list = await serviceFor(null).list();
+    const flags = Object.fromEntries(list.contacts.map((c) => [c.id, c.flags]));
+    expect(flags["c-013"]).toMatchObject({ doNotCall: true });
+    expect(flags["c-001"]).toMatchObject({ possibleDuplicate: true });
+    expect(flags["c-009"]).toMatchObject({ possibleDuplicate: true });
+    expect(flags["c-016"]).toMatchObject({ handoff: true });
+    expect(Object.values(flags).filter((f) => f.possibleDuplicate)).toHaveLength(2);
+  });
+});

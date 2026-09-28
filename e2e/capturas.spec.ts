@@ -1,7 +1,7 @@
 import { openContact, test } from "./fixtures";
 
 // Capturas de verificación visual (docs/capturas/<proyecto>/). Se regeneran en cada ejecución.
-const IDS = ["c-001", "c-003", "c-007", "c-008", "c-009", "c-012", "c-013", "c-015", "c-016"];
+const IDS = ["c-001", "c-003", "c-005", "c-007", "c-008", "c-009", "c-012", "c-013", "c-015", "c-016"];
 
 test.describe("Capturas", () => {
   test("listado", async ({ page }, info) => {

@@ -48,7 +48,7 @@ test.describe("Estados (R5)", () => {
     await expect(page.getByText("Origen desconocido", { exact: true })).toBeVisible();
     await expect(page.getByText("Sin cualificación todavía")).toBeVisible();
     await expect(page.getByText("Sin actividad registrada")).toBeVisible();
-    await expect(page.getByText("Sin email", { exact: true })).toBeVisible();
+    await expect(page.locator("section[aria-labelledby='contact-name']").getByText("Sin email", { exact: true })).toBeVisible();
     await expect(page.getByText("24/06/2026 · 02:00")).toBeVisible();
   });
 });
